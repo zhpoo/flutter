@@ -1568,9 +1568,12 @@ class SubmenuButton extends StatefulWidget {
     this.statesController,
     this.leadingIcon,
     this.trailingIcon,
+    this.showDecoration = true,
     required this.menuChildren,
     required this.child,
   });
+
+  final bool showDecoration;
 
   /// Called when a pointer enters or exits the button response area.
   ///
@@ -1920,7 +1923,8 @@ class _SubmenuButtonState extends State<SubmenuButton> {
                 leadingIcon: widget.leadingIcon,
                 trailingIcon: widget.trailingIcon,
                 hasSubmenu: true,
-                showDecoration: (controller._anchor!._parent?._orientation ?? Axis.horizontal) == Axis.vertical,
+                showDecoration: widget.showDecoration &&
+                    (controller._anchor!._parent?._orientation ?? Axis.horizontal) == Axis.vertical,
                 child: child ?? const SizedBox(),
               ),
             ),
